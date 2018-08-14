@@ -1,0 +1,176 @@
+<!--pages/goods/goods.wxml-->
+<import src="../../lib/wxParse/wxParse.wxml" />
+<import src="../../zanui/dist/stepper/index.wxml" />
+
+<scroll-view class="contain" scroll-y="true">
+  <view>
+    <swiper class="goodsimgs" indicator-dots="true" indicator-color="#e0e0e0" indicator-active-color="#fff" autoplay="true" interval="3000" duration="1000">
+      <swiper-item wx:for="{{gallery}}" wx:key="{{item.id}}">
+        <image src="{{item.imgUrl}}" background-size="cover"></image>
+      </swiper-item>
+    </swiper>
+
+    <view class='good-information'>
+      <view class='left-info'>
+        <view class='good-title'>{{goods.name}}</view>
+        <view class='good-desc'>{{goods.description}}</view>
+        <view class='good-price'>￥{{goods.price}}
+          <text class='good-price-origin'>￥{{goods.originPrice}}</text>
+        </view>
+        <view class="brand" wx:if="{{brands.length > 0}}">
+          <view wx:for="{{brands}}" wx:key="{{item.id}}" data-value="{{item.name}}" class="tag" hover-class="active" bindtap="openBrand">{{item.name}} > </view>
+        </view>
+      </view>
+      <navigator class="right-nav" wx:if="{{comment.count > 0}}" url="../comment/comment?valueId={{goods.id}}&typeId=0">
+        <view class='right-info'>
+          <view class='good-comment-count'>{{comment.count > 999 ? '999+' : comment.count}}</view>
+          <text class="comment">用户评价</text>
+          <view class="good-detail">查看</view>
+        </view>
+      </navigator>
+    </view>
+
+    <view class="section-nav section-attr" hover-class="active" bindtap="openOrCloseAttr">
+      <view class="t">{{checkedSpecText ? '已选择: '+checkedSpecText : '数量规格选择'}}</view>
+      <image class="i" src="/images/addressRight.png" background-size="cover"></image>
+    </view>
+
+    <view class="section-service" hover-class="active" bindtap="openService">
+      <view class="t">服务:</view>
+      <view class="d">
+        <view class="content" wx:for="{{serviceList}}" wx:key="{{item.id}}">
+          <view class="dot"></view>
+          <text class="txt">{{item.title}}</text>
+        </view>
+      </view>
+      <image class="i" src="/images/addressRight.png" background-size="cover"></image>
+    </view>
+
+    <view class="comments" wx:if="{{comment.count > 0}}">
+      <navigator url="../comment/comment?valueId={{goods.id}}&typeId=0">
+        <view class="h">
+          <text class="t">用户评价({{comment.count > 999 ? '999+' : comment.count}})</text>
+          <view class="r">
+            <text class="i">{{comment.rate}}% 好评</text>
+            <image class="c" src="/images/addressRight.png" background-size="cover"></image>
+          </view>
+        </view>
+      </navigator>
+      <view class="b">
+        <view class="item">
+          <view class="info">
+            <view class="user">
+              <image src="{{comment.avatar}}"></image>
+              <text>{{comment.nickname}}</text>
+            </view>
+            <view class="time">{{comment.addTime}}</view>
+          </view>
+          <view class="content">
+            {{comment.content}}
+          </view>
+          <view class="imgs" wx:if="{{comment.picList.length > 0}}">
+            <image class="img" wx:for="{{comment.picList}}" wx:for-index="index" wx:key="{{index}}" src="{{item}}" data-index="{{index}}" bindtap="previewImage" mode="aspectFill"></image>
+          </view>
+          <view class="spec">{{comment.skuName}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="goods-attr">
+      <view class="t">商品参数</view>
+      <view class="l">
+        <view class="item" wx:for="{{attribute}}" wx:key="{{item.name}}">
+          <text class="left">{{item.name}}</text>
+          <text class="right">{{item.value}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="detail">
+      <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
+    </view>
+
+    <view class="related-goods" wx:if="{{relatedGoods.length > 0}}">
+      <view class="h">
+        <view class="line"></view>
+        <text class="title">大家都在看</text>
+      </view>
+      <view class="b">
+        <view class="item" wx:for="{{relatedGoods}}" wx:key="{{item.id}}" data-id="{{item.id}}" bindtap="toRelatedGoods">
+          <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
+          <text class="name">{{item.name}}</text>
+          <text class="price">￥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 在需要展示时，增加 zan-popup--show 类即可 -->
+<view class="zan-popup zan-popup--bottom {{openAttr ? 'zan-popup--show' : ''}}">
+  <!-- 遮罩层，有需要可以在遮罩层上增加点击事件 -->
+  <view class="zan-popup__mask" bindtap="openOrCloseAttr"></view>
+  <!-- 弹出层的内容放在此元素内 -->
+  <view class="zan-popup__container">
+    <view class="attr-pop">
+      <view class="close" bindtap="openOrCloseAttr">×</view>
+      <view class="img-info">
+        <image class="img" src="{{selectPic}}"></image>
+        <view class="info">
+          <view class="c">
+            <view class="p">价格：￥{{goods.price}}</view>
+            <view class="d">￥{{goods.originPrice}}</view>
+            <view class="a" wx:if="{{attribute.length>0}}">{{checkedSpecText ? '已选择：'+checkedSpecText : '请选择规格属性'}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="spec-con">
+        <view class="spec-item" wx:for="{{spec}}" wx:key="{{item.id}}" wx:for-index="index1">
+          <view class="name">{{item.name}}</view>
+          <view class="values">
+            <view class="value {{vitem.checked ? 'selected' : ''}}" bindtap="clickSkuValue" wx:for="{{item.valueList}}" wx:for-item="vitem" wx:for-index="index2" wx:key="{{vitem.id}}" data-spec-index="{{index1}}" data-spec-id="{{item.id}}" data-value-index="{{index2}}"
+              data-value="{{vitem}}">{{vitem.value}}</view>
+          </view>
+        </view>
+
+        <view class="number-item">
+          <view class="name">数量</view>
+          <template class="zan-stepper" is="zan-stepper" data="{{ ...stepper, componentId: 'stepper' }}" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="zan-popup zan-popup--bottom {{openService ? 'zan-popup--show' : ''}}">
+  <view class="zan-popup__mask" bindtap="openService"></view>
+  <view class="zan-popup__container pop-container">
+    <view class="attr-service">
+      <view class="h">服务</view>
+      <scroll-view class="c" scroll-y="true">
+        <view class="desc" wx:for="{{serviceList}}" wx:key="{{item.id}}">
+          <view class="dt">
+            {{item.title}}
+          </view>
+          <view class="dc">
+            {{item.desc}}
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<view class="bottom-btn">
+  <view class="l l-collect" hover-class="active" bindtap="openIndexPage">
+    <image class="icon-index" src="/images/toIndex.png"></image>
+  </view>
+  <view class="l l-cart" hover-class="active" bindtap="openCartPage">
+    <view class="box">
+      <text class="cart-count" wx:if="{{cartGoodsCount > 0}}">{{cartGoodsCount}}</text>
+      <image class="icon" src="/images/shopingCart.png"></image>
+    </view>
+  </view>
+  <view class="c" hover-class="active" bindtap="buyNow">立即购买</view>
+  <view class="r" hover-class="active" bindtap="addToCart">加入购物车</view>
+</view>

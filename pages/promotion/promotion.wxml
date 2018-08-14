@@ -1,0 +1,19 @@
+<!--pages/brand/brand.wxml-->
+<import src="../../zanui/dist/tab/index.wxml" />
+
+<view class="container">
+  <image class="banner" wx:if="{{bannerPic}}" src="{{bannerPic}}" mode="aspectFill"></image>
+  <view class="list">
+    <template is="zan-tab" data="{{ ...tab, componentId: 'tab' }}"></template>
+    <view class="goods">
+      <view class="item" wx:for="{{around}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}">
+        <navigator url="../goods/goods?id={{item.id}}">
+          <image class="img2" src="{{item.list_pic_url}}" background-size="cover" mode="aspectFit" lazy-load="true"></image>
+          <text class="name">{{item.name}}</text>
+          <text class="description">{{item.description}}</text>
+          <text class="price">￥{{item.price}}</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>

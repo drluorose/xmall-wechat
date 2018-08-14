@@ -1,0 +1,120 @@
+/* pages/comment/comment.wxss */
+.comments{
+    width: 100%;
+    height: auto;
+    background: #fff;
+}
+
+.comments .b{
+    height: auto;
+    width: 680rpx;
+    margin: 0 auto;
+}
+
+.comments .b.no-h{
+    margin-top: 0;
+}
+
+.comments .item{
+    height: auto;
+    overflow: hidden;
+    border-bottom: 1rpx solid #ebebeb;
+    padding-bottom: 25rpx;
+}
+
+.comments .info{
+    height: 60rpx;
+    width: 100%;
+    padding: 33rpx 0 27rpx 0;
+}
+
+.comments .user{
+    float: left;
+    width: auto;
+    height: 67rpx;
+    line-height: 67rpx;
+    font-size: 0;
+}
+
+.comments .user image{
+    float: left;
+    width: 67rpx;
+    height: 67rpx;
+    margin-right: 17rpx;
+    border-radius: 50%;
+}
+
+.comments .user text{
+    display: inline-block;
+    width: auto;
+    height: 66rpx;
+    overflow: hidden;
+    font-size: 29rpx;
+    line-height: 66rpx;
+    color: #555;
+}
+
+.comments .time{
+    display: block;
+    float: right;
+    width: auto;
+    height: 67rpx;
+    line-height: 67rpx;
+    color: #7f7f7f;
+    font-size: 25rpx;
+}
+
+.comments .comment{
+    width: 720rpx;
+    padding-right: 30rpx;
+    line-height: 45.8rpx;
+    font-size: 29rpx;
+    margin-bottom: 20rpx;
+    color: #555;
+}
+
+.comments .imgs{
+    width: 720rpx;
+    height: 150rpx;
+    margin-bottom: 25rpx;
+}
+
+.comments .imgs .img{
+    height: 150rpx;
+    width: 150rpx;
+    margin-right: 28rpx;
+}
+
+.comments .spec{
+    width: 720rpx;
+    height: 25rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.comments .spec .item{
+    color: #7f7f7f;
+    font-size: 25rpx;
+}
+
+.comments .customer-service{
+    width: 690rpx;
+    height: auto;
+    overflow: hidden;
+    margin-top: 23rpx;
+    background: rgba(0,0,0,.03);
+    padding: 21rpx;
+}
+
+
+.comments .customer-service .u{
+    font-size: 24rpx;
+    color: #333;
+    line-height: 37.5rpx;
+}
+
+.comments .customer-service .c{
+    font-size: 24rpx;
+    color: #999;
+    line-height: 37.5rpx;
+}

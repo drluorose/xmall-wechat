@@ -1,0 +1,14 @@
+<!--pages/auth/reset/reset.wxml-->
+<!--pages/auth/login/login.wxml-->
+<view>
+    <view class="form-box">
+
+      <image src="/images/m.png" class="logo"></image>
+
+      <button class="zan-btn zan-btn--danger login-btn" bindtap="wechatLogin">微信登录</button>
+
+      <text class="login" bindtap="login">账号登录</text>
+
+    </view>
+</view>
+

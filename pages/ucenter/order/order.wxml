@@ -1,0 +1,40 @@
+<!--pages/ucenter/order/order.wxml-->
+<import src="../../../zanui/dist/tab/index.wxml" />
+
+<view>
+  <template class="head" is="zan-tab" data="{{ ...tab, componentId: 'tab' }}"></template>
+  <view class="no-order" wx:if="{{orderList.length == 0}}">
+    <image class="i" src="/images/noOrder.png"></image>
+    <view class="t">还没有任何订单呢</view>
+  </view>
+  <view class="orders" wx:if="{{orderList.length > 0}}">
+    <view class="order" wx:for="{{orderList}}" wx:key="{{item.id}}">
+      <navigator url="../orderDetail/orderDetail?id={{item.id}}">
+        <view class="h">
+          <view class="l">订单编号：{{item.orderSn}}</view>
+          <view class="r">{{item.orderStatusText}}</view>
+        </view>
+        <view class="goods" wx:for="{{item.goodsList}}" wx:key="{{gitem.id}}" wx:for-item="gitem">
+          <view class="img">
+            <image src="{{gitem.picUrl}}"></image>
+          </view>
+          <view class="info">
+            <text class="name">{{gitem.name}}</text>
+            <text class="number">共 {{gitem.number}} 件商品</text>
+          </view>
+        </view>
+      </navigator>
+
+      <view class="b" wx:if="{{item.orderStatus != -1}}">
+        <view class="l">{{item.pay === 0 ? '应付' : '实付'}}：￥{{item.actualPrice}}</view>
+        <view class="r">
+          <button class="zan-btn zan-btn--small" hover-class="active" data-order-index="{{index}}" catchtap="cancelOrder" wx:if="{{item.orderStatus <= 1}}">取消订单</button>
+          <button class="zan-btn zan-btn--small zan-btn--danger" data-order-index="{{index}}" catchtap="payOrder" wx:if="{{item.orderStatus === 0}}">去付款</button>
+          <button class="zan-btn zan-btn--small" hover-class="active" data-order-index="{{index}}" catchtap="showExpress" wx:if="{{item.orderStatus >= 2}}">追踪物流</button>
+          <button class="zan-btn zan-btn--small" hover-class="active" data-order-index="{{index}}" catchtap="confirmOrder" wx:if="{{item.orderStatus === 3}}">确认收货</button>
+          <button class="zan-btn zan-btn--small" hover-class="active" data-order-index="{{index}}" catchtap="commentOrder" wx:if="{{item.orderStatus === 4}}">立即评价</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

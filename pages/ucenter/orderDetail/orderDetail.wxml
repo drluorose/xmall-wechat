@@ -1,0 +1,84 @@
+<!--pages/ucenter/orderDetail/orderDetail.wxml-->
+
+<view>
+  <view class="order-info">
+    <view class="item-a">下单时间：{{orderInfo.createTime}}</view>
+    <view class="item-b">订单编号：{{orderInfo.orderSn}}</view>
+
+    <view class="item-c" wx:if="{{orderInfo.orderStatus <= 1}}">
+      <view class="l">实付：
+        <text class="cost">￥{{orderInfo.actualPrice}}</text>
+      </view>
+      <view class="r">
+        <button class="zan-btn zan-btn--small" hover-class="active" data-order-index="{{index}}" catchtap="cancelOrder">取消订单</button>
+        <button class="zan-btn zan-btn--small zan-btn--danger" data-order-index="{{index}}" catchtap="payOrder" wx:if="{{orderInfo.orderStatus === 0}}">去付款</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-goods">
+    <view class="h">
+      <view>商品信息</view>
+      <view class="status">{{orderInfo.orderStatusText}}</view>
+    </view>
+    <view class="goods">
+      <view class="item" wx:for="{{orderGoods}}" wx:key="{{item.id}}">
+        <view class="img">
+          <image src="{{item.picUrl}}"></image>
+        </view>
+        <view class="info">
+          <view class="t">
+            <text class="name">{{item.name}}</text>
+            <text class="number">x{{item.number}}</text>
+          </view>
+          <view class="attr">{{item.specifitionNameValue}}</view>
+          <view class="price">￥{{item.price}}</view>
+          <view class="originPrice">￥{{item.originPrice}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-bottom">
+    <view class="address">
+      <view class="t">
+        <text class="name">{{address.name}}</text>
+        <text class="mobile">{{address.mobile}}</text>
+      </view>
+      <view class="b">{{address.fullAddress}}</view>
+    </view>
+    <view class="total">
+      <view class="t">
+        <text class="label">支付方式：</text>
+        <text class="txt">微信支付</text>
+      </view>
+      <view class="t">
+        <text class="label">商品合计：</text>
+        <text class="txt">￥{{orderInfo.goodsPrice}}</text>
+      </view>
+      <view class="t">
+        <text class="label">运费：</text>
+        <text class="txt">￥{{orderInfo.freightPrice}}</text>
+      </view>
+      <view class="t">
+        <text class="label">优惠券：</text>
+        <text class="txt">-￥{{orderInfo.couponPrice}}</text>
+      </view>
+    </view>
+    <view class="pay-fee">
+      <text class="label">实付：</text>
+      <text class="txt">￥{{orderInfo.actualPrice}}</text>
+    </view>
+  </view>
+
+  <view class="order-service">
+    <view class="service-time">
+      <text>服务时间：</text>
+      <text class="time">9:00-22:00</text>
+    </view>
+    <view class="service-btn">
+      <button class="zan-btn zan-btn--small btn" hover-class="active" open-type="contact"><view class="zan-icon zan-icon-question"></view> 在线客服</button>
+      <button class="zan-btn zan-btn--small btn" hover-class="active" catchtap="callService"><view class="zan-icon zan-icon-phone"></view> 电话客服</button>
+    </view>
+  </view>
+</view>

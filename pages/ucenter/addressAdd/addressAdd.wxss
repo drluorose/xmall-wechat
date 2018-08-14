@@ -1,0 +1,55 @@
+/* pages/ucenter/addressAdd/addressAdd.wxss */
+@import "../../../lib/areaSelector/selector.wxss";
+
+page {
+  height: 100%;
+  background: #f4f4f4;
+}
+
+.add-address .add-form {
+  background: #fff;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.add-address .btns {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  height: 100rpx;
+  width: 100%;
+}
+
+.add-address .save {
+  flex: 1;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+}
+
+.region {
+  color: #777;
+  flex: 1;
+  line-height: 1.6;
+  padding: 13px 0;
+  min-height: 22px;
+  height: auto;
+  font-size: 14px;
+  border-bottom: 0.8px solid #ebebeb;
+  margin-left: 30rpx;
+}
+
+.region.selected{
+  color: #555;
+}
+
+.add-address .save {
+  background: #b4282d;
+}

@@ -1,0 +1,105 @@
+<!--index.wxml-->
+<view class="container">
+
+  <view class="search-back">
+    <view class="search" bindtap="toSearch">
+      <image class="search-logo" src="/images/search.png" mode="aspectFit"></image>
+      搜索喜欢的商品
+    </view>
+  </view>
+
+  <view class="banner-back">
+    <swiper class="banner" indicator-dots="true" indicator-color="#e0e0e0" indicator-active-color="#fff" autoplay="true" interval="3000" duration="1000">
+      <swiper-item wx:for="{{banner}}" wx:key="{{item.id}}">
+        <image src="{{item.imageUrl}}" background-size="cover" mode="aspectFit" data-value="{{item}}" bindtap="bannerNav"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="m-menu">
+    <view class="item" wx:for="{{channel}}" wx:key="{{item.id}}" data-value="{{item}}" bindtap="channelNav">
+      <image src="{{item.iconUrl}}" background-size="cover" data-value="{{item}}" bindtap="channelNav"></image>
+      <text data-value="{{item}}" bindtap="channelNav">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="a-section a-brand">
+    <navigator url="../promotion/promotion?title=热门商品">
+      <view class="h">
+        <text class="txt">热门商品</text>
+      </view>
+    </navigator>
+    <scroll-view class="hot" scroll-x="true">
+      <view class="item hot-item" wx:for="{{brand}}" wx:key="item.id">
+        <navigator url="../goods/goods?id={{item.id}}">
+          <view class="item item-hot">
+            <view class="wrap">
+              <image class="img" src="{{item.picUrl}}" mode="aspectFit"></image>
+            </view>
+          </view>
+          <view class="mt">
+            <text class="brand">{{item.name}}</text>
+            <text class="description">{{item.description}}</text>
+            <text class="price">￥ {{item.price}}</text>
+          </view>
+        </navigator>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="layout-two">
+    <view class="layout-image-two" wx:for="{{layout1}}" wx:key="item.id">
+      <navigator url="../goods/goods?id={{item.id}}">
+        <image class="layout-image-two" src="{{item.imageUrl}}" mode="aspectFit"></image>
+      </navigator>
+    </view>
+  </view>
+
+  <view class="a-section a-new" wx:if="{{newGoods.length > 0}}">
+    <navigator url="../promotion/promotion?title=官方精选">
+      <view class="h">
+        <text class="txt">官方精选</text>
+      </view>
+    </navigator>
+    <view class="b">
+      <view class="item" wx:for="{{newGoods}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}">
+        <navigator url="../goods/goods?id={{item.id}}">
+          <image class="img" src="{{item.picUrl}}" background-size="cover" mode="aspectFit" lazy-load="true"></image>
+          <text class="name">{{item.name}}</text>
+          <text class="description">{{item.description}}</text>
+          <text class="price">￥{{item.price}}</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+  <view class="layout-two">
+    <view class="layout-image-two" wx:for="{{layout2}}" wx:key="item.id">
+      <navigator url="../goods/goods??id={{item.id}}">
+        <image class="layout-image-two" src="{{item.imageUrl}}" mode="aspectFit"></image>
+      </navigator>
+    </view>
+  </view>
+
+  <view class="a-section a-new" wx:if="{{newGoods.length > 0}}">
+    <navigator url="../promotion/promotion?title=品牌周边">
+      <view class="h">
+        <text class="txt">品牌周边</text>
+      </view>
+    </navigator>
+    <view class="b">
+      <view class="item" wx:for="{{around}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}">
+        <navigator url="../goods/goods?id={{item.id}}">
+          <image class="img2" src="{{item.picUrl}}" background-size="cover" mode="aspectFit" lazy-load="true"></image>
+          <text class="name">{{item.name}}</text>
+          <text class="description">{{item.description}}</text>
+          <text class="price">￥{{item.price}}</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+  <view class="more">
+    <text class="title">—— 更多内容,敬请期待 ——</text>
+  </view>
+</view>

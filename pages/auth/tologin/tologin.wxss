@@ -1,0 +1,38 @@
+/* pages/auth/reset/reset.wxss */
+
+/* pages/auth/login/login.wxss */
+
+.form-box {
+  width: 650rpx;
+  overflow: hidden;
+  margin: 0 auto;
+  background: #fff;
+}
+
+.logo {
+  width: 145rpx;
+  height: 145rpx;
+  margin: 0 auto;
+  display: block;
+  margin-top: 180rpx;
+  margin-bottom: 70rpx;
+}
+
+.login-btn {
+  margin-top: 190rpx;
+  font-size: 30rpx;
+  width: 100%;
+}
+
+.form-item-text {
+  height: 35rpx;
+  width: 100%;
+}
+
+.login {
+  margin-top: 300rpx;
+  color: #b4282d;
+  text-align: center;
+  font-size: 28rpx;
+  display: block;
+}

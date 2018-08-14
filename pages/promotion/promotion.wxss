@@ -1,0 +1,71 @@
+/* pages/brand/brand.wxss */
+
+.banner {
+  width: 750rpx;
+  height: 50vw;
+  overflow: hidden;
+}
+
+.goods {
+  width: 750rpx;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+}
+
+.goods .item {
+  float: left;
+  width: 320rpx;
+  margin-top: 25rpx;
+  margin-left: 33rpx;
+  margin-right: 15rpx;
+}
+
+.goods .item-b {
+  margin-left: 0rpx;
+}
+
+.goods .img {
+  width: 320rpx;
+  height: 320rpx;
+  border: 1px solid #f0f0f0;
+  border-radius: 0.2rem;
+}
+
+.goods .img2 {
+  width: 320rpx;
+  height: 320rpx;
+}
+
+.goods .name {
+  display: block;
+  width: 320rpx;
+  height: 30rpx;
+  margin: 0rpx 10rpx 10rpx 20rpx;
+  overflow: hidden;
+  font-size: 24rpx;
+  color: #555;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.goods .description {
+  margin: 10rpx 10rpx 10rpx 20rpx;
+  display: block;
+  font-size: 20rpx;
+  height: 24rpx;
+  color: #7f7f7f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.goods .price {
+  display: block;
+  margin: 10rpx 10rpx 10rpx 20rpx;
+  line-height: 30rpx;
+  font-size: 22rpx;
+  color: #d44d44;
+  font-weight: bold;
+}

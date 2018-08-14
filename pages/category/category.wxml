@@ -1,0 +1,27 @@
+<!--pages/category/category.wxml-->
+<import src="../../zanui/dist/tab/index.wxml" />
+
+<view class="container">
+
+  <view class="cate-nav">
+    <template is="zan-tab" data="{{ ...tab, componentId: 'tab' }}"></template>
+  </view>
+
+  <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}};">
+    <view class="cate-item">
+      <view class="h">
+        <text class="name">{{currentCategory}}</text>
+      </view>
+      <view class="goods">
+        <view class="item" wx:for="{{around}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}">
+          <navigator url="../goods/goods?id={{item.id}}">
+            <image class="img2" src="{{item.list_pic_url}}" background-size="cover" mode="aspectFit" lazy-load="true"></image>
+            <text class="name">{{item.name}}</text>
+            <text class="description">{{item.description}}</text>
+            <text class="price">￥{{item.price}}</text>
+          </navigator>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

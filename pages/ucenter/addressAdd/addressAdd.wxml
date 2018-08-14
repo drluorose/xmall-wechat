@@ -1,0 +1,26 @@
+<!--pages/ucenter/addressAdd/addressAdd.wxml-->
+<import src="../../../zanui/dist/field/index.wxml" />
+<import src="../../../zanui/dist/switch/index.wxml" />
+<include src="../../../lib/areaSelector/selector.wxml" />
+
+<view class="add-address">
+  <view class="add-form">
+    <template is="zan-field" data="{{ ...name }}"></template>
+    <template is="zan-field" data="{{ ...mobile }}"></template>
+    <view class="region {{selected ? 'selected' : ''}}" bindtap="showAreaSelector">{{region}}</view>
+    <template is="zan-field" data="{{ ...address }}"></template>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--switch">
+      <view class="zan-cell__bd">设为默认地址</view>
+      <view class="zan-cell__ft">
+        <template is="zan-switch" data="{{ checked }}" />
+      </view>
+    </view>
+  </view>
+
+  <view class="btns">
+    <button class="save" bindtap="saveAddress">保存</button>
+  </view>
+</view>

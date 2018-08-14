@@ -1,0 +1,25 @@
+<!--pages/comment/comment.wxml-->
+<import src="../../zanui/dist/tab/index.wxml" />
+
+<view class="comments">
+  <template is="zan-tab" data="{{ ...tab, componentId: 'tab' }}"></template>
+  <view class="b">
+    <view class="item" wx:for="{{comments}}" wx:key="{{item.id}}" wx:for-index="commentIndex">
+      <view class="info">
+        <view class="user">
+          <image src="{{item.userInfo.avatar}}"></image>
+          <text>{{item.userInfo.nickname}}</text>
+        </view>
+        <view class="time">{{item.createTime}}</view>
+      </view>
+      <view class="comment">{{item.content}}</view>
+      <view class="imgs" wx:if="{{item.picList.length > 0}}">
+        <image class="img" wx:for="{{item.picList}}"  wx:for-index="picIndex" wx:key="{{picIndex}}" wx:for-item="pitem" src="{{pitem}}" data-comment-index="{{commentIndex}}" data-pic-index="{{picIndex}}" bindtap="previewImage" mode="aspectFill"></image>
+      </view>
+      <view class="spec">
+         <text class="item">{{item.spec}}</text> 
+      </view>
+    </view>
+
+  </view>
+</view>

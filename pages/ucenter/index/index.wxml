@@ -1,0 +1,42 @@
+<!--pages/ucenter/index/index.wxml-->
+<view class="container">
+  <view class="profile-info" bindtap="goLogin">
+    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+    <view class="info">
+      <text class="name">{{userInfo.nickName}}</text>
+      <text class="level">{{userInfo.username}}</text>
+    </view>
+  </view>
+
+  <view class="user-menu">
+    <view class="zan-panel">
+      <view class="zan-cell zan-cell--access" hover-class="active" bindtap="toOrder">
+        <view class="zan-cell__icon zan-icon zan-icon-pending-orders"></view>
+        <view class="zan-cell__bd">我的订单</view>
+        <view class="zan-cell__ft"></view>
+      </view>
+      <view class="zan-cell zan-cell--access" hover-class="active" bindtap="afterSale">
+        <view class="zan-cell__icon zan-icon zan-icon-after-sale"></view>
+        <view class="zan-cell__bd">退货 / 售后</view>
+        <view class="zan-cell__ft"></view>
+      </view>
+      <view class="zan-cell zan-cell--access" hover-class="active" bindtap="toCoupon">
+        <view class="zan-cell__icon zan-icon zan-icon-discount"></view>
+        <view class="zan-cell__bd">优惠券</view>
+        <view class="zan-cell__ft"></view>
+      </view>
+      <view hover-class="active" class="zan-cell zan-cell--access" bindtap="toAddress">
+        <view class="zan-cell__icon zan-icon zan-icon-location"></view>
+        <view class="zan-cell__bd">地址管理</view>
+        <view class="zan-cell__ft"></view>
+      </view>
+      <view class="zan-cell zan-cell--access" hover-class="active" bindtap="callService">
+        <view class="zan-cell__icon zan-icon zan-icon-question"></view>
+        <view class="zan-cell__bd">联系客服</view>
+        <view class="zan-cell__ft"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="logout" hover-class="active" wx:if="{{isLogin}}" bindtap="toLogin">切换账号</view>
+</view>
